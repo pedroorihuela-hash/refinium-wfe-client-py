@@ -7,15 +7,17 @@ class _Base(BaseModel):
     model_config = ConfigDict(populate_by_name=True, extra="ignore")
 
 class StepIn(_Base):
-    name: str
-    role_required: str | None = None
-    sla_hours: int | None = None
+    key: str = Field(min_length=1, max_length=64)
+    name: str = Field(min_length=1, max_length=255)
+    description: str | None = None
+    role_required: str | None = Field(default=None, max_length=64)
+    sla_hours: int | None = Field(default=None, ge=1)
 
 class DefinitionIn(_Base):
-    customer_id: str
-    key: str
-    name: str
-    description: str | None = None
+    customer_id: str = Field(min_length=1, max_length=64)
+    key: str = Field(min_length=1, max_length=64)
+    name: str = Field(min_length=1, max_length=255)
+    description: str | None = Field(default=None, max_length=1024)
     steps: list[StepIn] = []
 
 class DefinitionOut(_Base):
