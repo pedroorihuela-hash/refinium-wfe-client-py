@@ -53,6 +53,7 @@ class InstanceOut(_Base):
     completed_at: datetime | None = None
     cancelled_at: datetime | None = None
     payload: dict[str, Any] = {}
+    tasks: list["TaskOut"] = []
 
 class CancelIn(_Base):
     reason: str | None = None
