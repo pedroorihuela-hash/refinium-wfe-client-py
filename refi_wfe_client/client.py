@@ -47,6 +47,8 @@ class WFEClient:
         entity_ref: str,
         title: str | None = None,
         payload: dict[str, Any] | None = None,
+        auto_complete_through_key: str | None = None,
+        auto_complete_reason: str | None = None,
         initial_assignee_ref: str | None = None,
         avoid_duplicate: bool = True,
     ) -> InstanceOut:
@@ -56,6 +58,8 @@ class WFEClient:
             entity_ref=entity_ref,
             title=title or f"{key} for {entity_ref}",
             payload=payload or {},
+            auto_complete_through_key=auto_complete_through_key,
+            auto_complete_reason=auto_complete_reason,
             initial_assignee_ref=initial_assignee_ref,
             avoid_duplicate=avoid_duplicate,
         )

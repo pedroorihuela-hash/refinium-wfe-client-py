@@ -31,13 +31,14 @@ class DefinitionOut(_Base):
     updated_at: datetime
 
 class InstanceIn(_Base):
-    customer_id: str
-    definition_key: str
-    entity_ref: str
-    title: str
+    customer_id: str = Field(min_length=1, max_length=64)
+    definition_key: str = Field(min_length=1, max_length=64)
+    entity_ref: str = Field(min_length=1, max_length=128)
+    title: str = Field(min_length=1, max_length=255)
     payload: dict[str, Any] = {}
-    auto_complete_through_key: str | None = None
-    initial_assignee_ref: str | None = None
+    auto_complete_through_key: str | None = Field(default=None, max_length=64)
+    auto_complete_reason: str | None = Field(default=None, max_length=512)
+    initial_assignee_ref: str | None = Field(default=None, max_length=128)
     avoid_duplicate: bool = True
 
 class InstanceOut(_Base):
