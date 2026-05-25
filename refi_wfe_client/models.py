@@ -21,7 +21,7 @@ class DefinitionIn(_Base):
     steps: list[StepIn] = []
 
 class DefinitionOut(_Base):
-    id: str
+    id: int
     tenant_id: str
     customer_id: str
     key: str
@@ -42,7 +42,7 @@ class InstanceIn(_Base):
     avoid_duplicate: bool = True
 
 class InstanceOut(_Base):
-    id: str
+    id: int
     tenant_id: str
     customer_id: str
     entity_ref: str
@@ -59,8 +59,8 @@ class CancelIn(_Base):
     reason: str | None = None
 
 class TaskOut(_Base):
-    id: str
-    instance_id: str
+    id: int
+    instance_id: int
     step_name: str
     step_order: int
     role_required: str | None = None
@@ -76,7 +76,7 @@ class CompleteTaskIn(_Base):
     note: str | None = None
 
 class NotificationOut(_Base):
-    id: str
+    id: int
     tenant_id: str
     customer_id: str
     user_ref: str
