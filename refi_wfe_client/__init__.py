@@ -7,7 +7,7 @@ from .exceptions import (
     WFENotFoundError, WFEServerError, WFEValidationError,
 )
 from .models import (
-    DefinitionOut, InstanceOut, NotificationOut, TaskOut, WebhookEvent,
+    CompleteTaskOut, DefinitionOut, InstanceOut, NotificationOut, TaskOut, WebhookEvent,
 )
 from .webhook import verify_webhook_signature
 
@@ -15,6 +15,6 @@ __all__ = [
     "WFEClient",
     "WFEError", "WFEAuthError", "WFENotFoundError",
     "WFEConflictError", "WFEValidationError", "WFEServerError",
-    "DefinitionOut", "InstanceOut", "TaskOut", "NotificationOut", "WebhookEvent",
+    "CompleteTaskOut", "DefinitionOut", "InstanceOut", "TaskOut", "NotificationOut", "WebhookEvent",
     "verify_webhook_signature",
 ]

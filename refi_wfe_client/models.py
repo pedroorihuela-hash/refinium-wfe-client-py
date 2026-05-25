@@ -85,6 +85,15 @@ class NotificationOut(_Base):
     read_at: datetime | None = None
     created_at: datetime
 
+class CompleteTaskOut(_Base):
+    """Envelope returned by POST /api/v1/tasks/{id}/complete."""
+    task: TaskOut
+    instance_state: str
+    current_step_id: int | None = None
+    next_task: TaskOut | None = None
+    completed: bool
+
+
 class WebhookEvent(_Base):
     event_type: str
     tenant_id: str

@@ -8,7 +8,7 @@ from .exceptions import (
     WFENotFoundError, WFEServerError, WFEValidationError,
 )
 from .models import (
-    CancelIn, CompleteTaskIn, DefinitionIn, InstanceIn,
+    CancelIn, CompleteTaskIn, CompleteTaskOut, DefinitionIn, InstanceIn,
     InstanceOut, StepIn, TaskOut,
 )
 
@@ -72,14 +72,14 @@ class WFEClient:
         task_id: str,
         completed_by_ref: str,
         note: str | None = None,
-    ) -> TaskOut:
+    ) -> CompleteTaskOut:
         body = CompleteTaskIn(completed_by_ref=completed_by_ref, note=note)
         data = self._request(
             "POST", f"/api/v1/tasks/{task_id}/complete",
             json=body.model_dump(),
         )
         log.debug("WFE task completed: task=%s by=%s", task_id, completed_by_ref)
-        return TaskOut(**data)
+        return CompleteTaskOut(**data)
 
     def get_tasks(
         self,
