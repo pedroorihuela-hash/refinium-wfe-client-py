@@ -37,7 +37,7 @@ class WFEClient:
             customer_id=customer_id, key=key, name=name,
             description=description, steps=[StepIn(**s) for s in steps],
         )
-        self._request("POST", "/api/v1/definitions", json=payload.model_dump())
+        self._request("POST", "/api/v1/definitions", json=payload.model_dump(exclude_none=True))
         log.debug("WFE definition registered: customer=%s key=%s", customer_id, key)
 
     def start_instance(
@@ -63,7 +63,7 @@ class WFEClient:
             initial_assignee_ref=initial_assignee_ref,
             avoid_duplicate=avoid_duplicate,
         )
-        data = self._request("POST", "/api/v1/instances", json=body.model_dump())
+        data = self._request("POST", "/api/v1/instances", json=body.model_dump(exclude_none=True))
         log.debug("WFE instance started: id=%s entity=%s", data.get("id"), entity_ref)
         return InstanceOut(**data)
 
@@ -76,7 +76,7 @@ class WFEClient:
         body = CompleteTaskIn(completed_by_ref=completed_by_ref, note=note)
         data = self._request(
             "POST", f"/api/v1/tasks/{task_id}/complete",
-            json=body.model_dump(),
+            json=body.model_dump(exclude_none=True),
         )
         log.debug("WFE task completed: task=%s by=%s", task_id, completed_by_ref)
         return CompleteTaskOut(**data)
@@ -104,7 +104,7 @@ class WFEClient:
         body = CancelIn(reason=reason)
         self._request(
             "POST", f"/api/v1/instances/{instance_id}/cancel",
-            json=body.model_dump(),
+            json=body.model_dump(exclude_none=True),
         )
         log.debug("WFE instance cancelled: id=%s", instance_id)
 
