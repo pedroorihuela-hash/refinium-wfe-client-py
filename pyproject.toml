@@ -1,6 +1,6 @@
 [project]
 name = "refi-wfe-client"
-version = "0.1.0"
+version = "0.1.1"
 description = "REFI-WFE client SDK — typed Python client for the Refinium AI Platform Workflow Engine."
 requires-python = ">=3.12"
 dependencies = [
